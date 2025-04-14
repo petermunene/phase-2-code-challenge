@@ -1,15 +1,6 @@
-import React, { useState } from 'react';
-import SearchBar from './SearchBar';
+import React from 'react';
 
-function ExpenseTable({ expenses }) {
-
-    const [newExpenses , setNewExpenses]=useState(expenses)
-    function onDelete(idToDelete){
-    const filteredItems=newExpenses.filter((newExpense)=>{return newExpense.id!==idToDelete})
-    setNewExpenses(filteredItems)}
-
-
-
+function ExpenseTable({ expenses, onDelete }) {
   return (
     <table border="1" width="100%" cellPadding="8" style={{ borderCollapse: 'collapse' }}>
       <thead>
@@ -21,14 +12,14 @@ function ExpenseTable({ expenses }) {
         </tr>
       </thead>
       <tbody>
-        {newExpenses.length > 0 ? (
-          newExpenses.map((newExpense) => (
-            <tr key={newExpense.id}>
-              <td>{newExpense.description}</td>
-              <td>{newExpense.category}</td>
-              <td>{newExpense.amount.toFixed(2)}</td>
+        {expenses.length > 0 ? (
+          expenses.map((expense) => (
+            <tr key={expense.id}>
+              <td>{expense.description}</td>
+              <td>{expense.category}</td>
+              <td>{expense.amount.toFixed(2)}</td>
               <td>
-                <button onClick={()=>{onDelete(newExpense.id)}}>Delete</button>
+                <button onClick={() => onDelete(expense.id)}>Delete</button>
               </td>
             </tr>
           ))
@@ -40,7 +31,6 @@ function ExpenseTable({ expenses }) {
           </tr>
         )}
       </tbody>
-      <SearchBar items={newExpenses}/>
     </table>
   );
 }
