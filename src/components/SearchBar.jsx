@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 
 function SearchBar({setFiltered }) {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('All');
   
-
-  
-
   return (
     <div style={{ marginBottom: '1rem' }}>
       <input
@@ -14,7 +11,7 @@ function SearchBar({setFiltered }) {
         onChange={(e) => {
           const val = e.target.value;
           setValue(val);
-        setFiltered(value)
+            setFiltered(val);
         }}
       
       />

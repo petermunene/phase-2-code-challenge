@@ -7,11 +7,13 @@ function App() {
   
 
   const [items , setItems]=useState([])
-  const [filteredItems, setFilteredItems] = useState(items);
-  function filtered (value){
-        
-    if(value ==""){
+  const [filteredItems, setFilteredItems] = useState([]);
+  function Filtered (value){
+      
 
+    if(!value || value == "" || value == "All"){
+
+      alert(value)
     setFilteredItems([...items])
     
     }
@@ -25,8 +27,7 @@ function App() {
         )
         setFilteredItems(updated)
         }}
-        
-
+      
   
   const handleAddItem = (newItem) => {
     const updated = [...items, newItem];
@@ -34,10 +35,7 @@ function App() {
     setFilteredItems(updated);         
   
   };
-  function dispayItems(){
-    const AllItems=[...items,]
-    setFilteredItems(AllItems)
-  }
+  
 
   const handleDelete = (idToDelete) => {
     const updated = items.filter((item) => item.id !== idToDelete);
@@ -50,7 +48,7 @@ function App() {
     <div>
       <h1>Expense Tracker</h1>
 
-      <SearchBar setFiltered={filtered} />
+      <SearchBar setFiltered={Filtered} />
       <ExpenseForm items={items} setItems={handleAddItem} />
       <ExpenseTable expenses={filteredItems} onDelete={handleDelete} />
     </div>
