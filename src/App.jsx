@@ -13,7 +13,7 @@ function App() {
 
     if(!value || value == "" || value == "All"){
 
-      alert(value)
+      
     setFilteredItems([...items])
     
     }
